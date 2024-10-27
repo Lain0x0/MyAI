@@ -3,12 +3,16 @@ import os
 import json
 import uuid
 import requests
+import logging
 from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Set a secret key for session management
 CORS(app)
+
+# Configure logging
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s %(levelname)s %(message)s')
 
 # Replace with your actual API key
 API_KEY = os.getenv('TOKEN')
@@ -65,7 +69,8 @@ def generate_content():
 
         return jsonify({'response': response_text, 'response_id': str(uuid.uuid4())}), 200
     except requests.exceptions.RequestException as e:
-        return jsonify({'error': str(e)}), 500
+        logging.error("RequestException: %s", str(e))
+        return jsonify({'error': 'An internal error occurred'}), 500
     except Exception:  # Catching general exceptions
         return jsonify({'error': 'An unexpected error occurred'}), 500
 
