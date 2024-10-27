@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 25px;
+    background-color: rgb(40, 40, 44);
+}
+
+div#inputbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+}
+
+input#search {
+    border: solid white 2px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+button#submitbutton{
+    border: solid white 2px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 100px;
+    margin-left: 10px;
+    cursor: pointer;
+}
