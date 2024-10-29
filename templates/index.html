@@ -6,6 +6,7 @@
     <title>My AI</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- New font -->
     <style>
         /* Styles for dark/light mode and response styling */
         body {
@@ -13,6 +14,7 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
             transition: background 0.5s, color 0.5s;
+            color: #fff; /* Default color in dark mode */
         }
         .light-mode {
             background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
@@ -54,13 +56,28 @@
             color: #3b82f6;
             text-decoration: underline;
         }
+        .text-dark-mode {
+            color: #fff;
+        }
+        .light-mode .text-dark-mode {
+            color: #333; /* Text color in light mode */
+        }
+        .light-mode #search {
+            background-color: #fff; /* Input background in light mode */
+            color: #333; /* Input text color in light mode */
+            border: 1px solid #ccc; /* Input border in light mode */
+        }
+        .light-mode .logo {
+            color: #1a202c; /* Color for AI logo in light mode */
+            font-family: 'Roboto', sans-serif; /* New font for the logo */
+        }
     </style>
 </head>
 <body class="flex flex-col justify-between p-6">
     <div class="flex-grow">
         <div class="header text-center mb-4">
-            <h2 class="text-3xl font-bold text-white flex items-center justify-center gap-2">
-                <i class="fas fa-robot text-5xl text-blue-400"></i> My AI
+            <h2 class="text-3xl font-bold text-dark-mode flex items-center justify-center gap-2 logo">
+                <i class="fas fa-robot text-5xl text-blue-400"></i> My AI <!-- Added class for logo styling -->
             </h2>
             <button id="toggleMode" class="text-sm text-gray-400 mt-2 flex items-center gap-2">
                 <i id="toggleIcon" class="fas fa-moon"></i> Toggle Dark/Light Mode
@@ -68,13 +85,13 @@
         </div>
         <div id="result" class="hidden response-card max-w-xl mx-auto mt-4">
             <div class="flex justify-between items-center">
-                <div class="content"></div>
+                <div class="content text-dark-mode"></div>
                 <button id="deleteButton" class="delete-icon ml-2" title="Delete response">
                     <i class="fas fa-trash-alt text-red-500"></i>
                 </button>
             </div>
             <div class="feedback-section mt-4">
-                <textarea id="feedbackInput" placeholder="Provide your feedback..." class="w-full h-24 p-2 border border-gray-300 rounded-lg bg-gray-800 text-white"></textarea>
+                <textarea id="feedbackInput" placeholder="Provide your feedback..." class="w-full h-24 p-2 border border-gray-300 rounded-lg bg-gray-800 text-dark-mode"></textarea>
                 <button id="submitFeedbackButton" class="mt-2 h-10 px-4 rounded-lg bg-green-500 text-white hover:bg-green-600 transition duration-200">
                     <i class="fas fa-paper-plane"></i> Submit Feedback
                 </button>
@@ -83,10 +100,10 @@
         <div id="loading" class="hidden loading mt-4">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
         </div>
-        <div id="alert" class="alert hidden mt-4 p-4 bg-red-600 text-white rounded-lg max-w-xl mx-auto"></div>
+        <div id="alert" class="alert hidden mt-4 p-4 bg-red-600 text-dark-mode rounded-lg max-w-xl mx-auto"></div>
     </div>
     <div class="flex items-center mt-4 max-w-xl mx-auto">
-        <input type="text" id="search" placeholder="Share your thoughts" class="flex-grow h-12 px-4 border border-gray-300 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        <input type="text" id="search" placeholder="Share your thoughts" class="flex-grow h-12 px-4 border border-gray-300 rounded-lg bg-gray-800 text-dark-mode focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
         <button id="submitButton" class="ml-2 h-12 px-4 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition duration-200">Submit</button>
     </div>
 
@@ -107,6 +124,11 @@
             document.body.classList.toggle('light-mode', !isDarkMode);
             toggleIcon.classList.toggle('fa-moon', isDarkMode);
             toggleIcon.classList.toggle('fa-sun', !isDarkMode);
+            
+            // Toggle the text-dark-mode class on elements to adjust text color
+            document.querySelectorAll('.text-dark-mode').forEach(el => {
+                el.classList.toggle('text-dark-mode', !isDarkMode);
+            });
         });
 
         function formatResponse(response) {
@@ -176,41 +198,21 @@
             })
             .then(response => {
                 if (!response.ok) throw new Error(response.statusText);
-                return response.json();
-            })
-            .then(data => {
-                alertDiv.innerText = data.message;
+                alertDiv.innerText = 'Feedback submitted!';
                 alertDiv.classList.remove('hidden');
-                feedbackInput.value = ''; // Clear the feedback input
+                setTimeout(() => alertDiv.classList.add('hidden'), 3000);
+                feedbackInput.value = '';
             })
             .catch(error => {
-                alertDiv.innerText = 'Error: ' + error.message;
+                alertDiv.innerText = 'Error submitting feedback: ' + error.message;
                 alertDiv.classList.remove('hidden');
             });
         }
 
-        // Event listeners
         submitButton.addEventListener('click', submitRequest);
-        deleteButton.addEventListener('click', () => {
-            resultDiv.classList.add('hidden');
-            searchInput.value = '';
-        });
+        deleteButton.addEventListener('click', () => resultDiv.classList.add('hidden'));
         document.getElementById('submitFeedbackButton').addEventListener('click', submitFeedback);
-
-        // Add event listeners for Enter key
-        searchInput.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevents form submission if in a form
-                submitRequest();
-            }
-        });
-
-        feedbackInput.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevents form submission if in a form
-                submitFeedback();
-            }
-        });
     </script>
 </body>
 </html>
+
