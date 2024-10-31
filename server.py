@@ -2,10 +2,15 @@
 import os
 import json
 import uuid
+from dotenv import load_dotenv
 
 import requests
 from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
+
+# Reload from Environment
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Set a secret key for session management
