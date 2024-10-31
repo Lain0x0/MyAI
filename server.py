@@ -10,7 +10,10 @@ from flask_cors import CORS
 
 # Reload from Environment
 
-load_dotenv()
+dotenv_path="/home/nix/MyAI/server_side/config/.env"
+
+load_dotenv(dotenv_path)
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Set a secret key for session management
