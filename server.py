@@ -10,7 +10,7 @@ from flask_cors import CORS
 
 # Reload from Environment
 
-dotenv_path="/home/nix/MyAI/server_side/config/.env"
+dotenv_path="../../MyAI/server_side/config/.env"
 
 load_dotenv(dotenv_path)
 
