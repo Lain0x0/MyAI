@@ -11,10 +11,10 @@ My AI is an interactive web application designed to assist users by providing an
 
 ## Technologies Used
 
-- **Frontend**: HTML, CSS (Tailwind CSS), JavaScript
-- **Backend**: Python, Flask
-- **AI Integration**: Google Gemini API
-- **Development Tools**: Git for version control and Node.js for package management.
+- **Frontend**: [HTML]("https://developer.mozilla.org/en-US/docs/Web/HTML"), [CSS]("https://developer.mozilla.org/en-US/docs/Web/CSS") ,[TailWindCSS]("https://tailwindcss.com/docs/installation"), [JavaScript]("https://developer.mozilla.org/en-US/docs/Web/JavaScript")
+- **Backend**: [Python]("https://www.python.org/"), [Flask]("https://flask.palletsprojects.com/en/stable/")
+- **AI Integration**: [Google Gemini API]("https://ai.google.dev/gemini-api/docs")
+- **Development Tools**: [Git for version control]("https://git-scm.com/doc"), and [NodeJS]("https://nodejs.org/docs/latest/api/") for package management.
 
 ## Setup Instructions
 
@@ -23,10 +23,29 @@ To run the My AI web app locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/my-ai.git
-   cd my-ai
+   git clone https://github.com/Lain0x0/MyAI
+   cd MyAI
 
 2. **Install dependencies:**
+
+``` Setup Python env
+python -m venv <directory name>
+
+Example :
+python -m venv venv
+
+# In Linux & MacOs:
+
+source venv/bin/activate
+
+# In Windows:
+
+* In cmd.exe
+venv\Scripts\activate.bat
+
+* In PowerShell
+venv\Scripts\Activate.ps1
+```
 
 ```bash
 pip install -r requirements.txt
@@ -34,7 +53,7 @@ pip install -r requirements.txt
 
 3. **Run the server 'server.py':**
 ```bash
-python3 / python server.py #Use python3 or python based on OS you use !
+python server.py
 ```
 
 4. **Usage:**
