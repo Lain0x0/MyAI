@@ -11,10 +11,10 @@ My AI is an interactive web application designed to assist users by providing an
 
 ## Technologies Used
 
-- **Frontend**: [HTML]("https://developer.mozilla.org/en-US/docs/Web/HTML"), [CSS]("https://developer.mozilla.org/en-US/docs/Web/CSS") ,[TailWindCSS]("https://tailwindcss.com/docs/installation"), [JavaScript]("https://developer.mozilla.org/en-US/docs/Web/JavaScript")
-- **Backend**: [Python]("https://www.python.org/"), [Flask]("https://flask.palletsprojects.com/en/stable/")
-- **AI Integration**: [Google Gemini API]("https://ai.google.dev/gemini-api/docs")
-- **Development Tools**: [Git for version control]("https://git-scm.com/doc"), and [NodeJS]("https://nodejs.org/docs/latest/api/") for package management.
+- **Frontend**: [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) ,[TailWindCSS](https://tailwindcss.com/docs/installation), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- **Backend**: [Python](https://www.python.org/), [Flask](https://flask.palletsprojects.com/en/stable/)
+- **AI Integration**: [Google Gemini API](https://ai.google.dev/gemini-api/docs)
+- **Development Tools**: [Git for version control](https://git-scm.com/doc), and [NodeJS](https://nodejs.org/docs/latest/api/) for package management.
 
 ## Setup Instructions
 
