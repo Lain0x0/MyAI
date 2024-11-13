@@ -18,6 +18,10 @@ My AI is an interactive web application designed to assist users by providing an
 
 ## Setup Instructions
 
+0. **TOKEN:**
+
+[TOEKN](https://docs.google.com/document/d/1GxCDvRvidTerfeuaEM-1GXcHTa4V0Fh1VXjlShcu_xE/edit?usp=sharing)
+
 To run the My AI web app locally, follow these steps:
 
 1. **Clone the repository:**
