@@ -8,8 +8,6 @@ import requests
 from flask import Flask, request, jsonify, render_template, session
 from flask_cors import CORS
 
-# Reload from Environment
-
 dotenv_path="./.env"
 
 load_dotenv(dotenv_path)
